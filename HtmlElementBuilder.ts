@@ -9,7 +9,7 @@ export class HtmlElementBuilder {
     }
 
     private addAttribute(key: string, attribute: any) {
-        if(key == 'classList') {
+        if(key === 'classList') {
             for(let j of attribute) {
                 this.htmlMainElement.classList.add(j);
             }
