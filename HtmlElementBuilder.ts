@@ -48,6 +48,10 @@ export class HtmlElementBuilder {
         this.htmlChildElements.push(child);
     }
 
+    public replaceChild(index: number, newChild: HtmlElementBuilder) {
+        this.htmlChildElements[index] = newChild;
+    }
+
     public getChild(index: number) {
         return this.htmlChildElements[index];
     }
