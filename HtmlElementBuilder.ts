@@ -4,6 +4,7 @@ export class HtmlElementBuilder {
     private htmlAttributes: Object;
     private htmlStyle: Object;
     private htmlChildElements: HtmlElementBuilder[];
+    private htmlEvents: Object[];
 
     public constructor(tag: string, attributes: Object, style: Object) {
         this.htmlTag = tag;
@@ -36,6 +37,12 @@ export class HtmlElementBuilder {
         }
         for(let child of this.htmlChildElements) {
             this.htmlMainElement.appendChild(child.get());
+        }
+        for(let event of this.htmlEvents) {
+            this.htmlMainElement.addEventListener(event['event'], function (ev) {
+                var callback = event['callback'];
+                callback(ev);
+            });
         }
     }
 
@@ -81,5 +88,12 @@ export class HtmlElementBuilder {
 
     public editStyle(key: string, value: string) {
         this.htmlStyle[key] = value;
+    }
+
+    public addNewEventListener(event: string, callback: Function) {
+        this.htmlEvents.push({
+            event: event,
+            callback: callback
+        });
     }
 }
