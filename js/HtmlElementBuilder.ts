@@ -1,4 +1,4 @@
-export class HtmlElementBuilder {
+class HtmlElementBuilder {
     private htmlMainElement: HTMLElement;
     private htmlTag: string;
     private htmlAttributes: Object;
@@ -11,6 +11,7 @@ export class HtmlElementBuilder {
         this.htmlAttributes = attributes;
         this.htmlStyle = style;
         this.htmlChildElements = [];
+        this.htmlEvents = [];
     }
 
     private addAttributeToBuild(key: string, attribute: any) {
