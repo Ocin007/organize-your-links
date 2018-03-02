@@ -48,6 +48,10 @@ export class HtmlElementBuilder {
         this.htmlChildElements.push(child);
     }
 
+    public getChild(index: number) {
+        return this.htmlChildElements[index];
+    }
+
     public editAttribute(key: string, value: string) {
         this.htmlAttributes[key] = value;
     }
