@@ -61,6 +61,9 @@ class HtmlElementBuilder {
     }
 
     public getChild(index: number) {
+        if(index < 0) {
+            return this.htmlChildElements;
+        }
         return this.htmlChildElements[index];
     }
 
@@ -78,7 +81,7 @@ class HtmlElementBuilder {
     }
     
     private removeClassFromClassList(index: number) {
-        let helperArray: string[];
+        let helperArray: string[] = [];
         for(let i in this.htmlAttributes['classList']) {
             if(parseInt(i) !== index) {
                 helperArray.push(this.htmlAttributes['classList'][i]);
