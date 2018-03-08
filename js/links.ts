@@ -5,6 +5,25 @@ var creatingTableStorage = {
     elementList: [],
     newCategories: []
 };
+const UNDEF_AJAXDATA_SINGLE: SingleEpObj = {
+    id: undefined,
+    isSeries: 0,
+    isFavorit: 0,
+    title: '',
+    categoryList: [],
+    status: 0,
+    note: '',
+    link: ''
+};
+const UNDEF_AJAXDATA_SERIES: SeriesObj = {
+    id: undefined,
+    isSeries: 1,
+    isFavorit: 0,
+    title: '',
+    categoryList: [],
+    episodes: [],
+    templateList: []
+};
 document.addEventListener('DOMContentLoaded', function () {
     getSettings();
     addEvents();
@@ -23,8 +42,8 @@ function getSettings() {
     xhttp.send();
 }
 function addEvents() {
-    let elements = document.getElementsByClassName('add-element-event');
-    for(let i of elements) {
+    let addButtons = document.getElementsByClassName('add-element-event');
+    for(let i of addButtons) {
         i.addEventListener('click', function (ev) {
             addNewListElement(ev);
         });
@@ -32,18 +51,35 @@ function addEvents() {
 }
 
 function addNewListElement(ev) {
-    let tr = new Blueprint().singleEpisode();
-    creatingTableStorage.elementList.push(tr);
+    console.log(ev);
+    let tr = new Blueprint().singleEpisode(UNDEF_AJAXDATA_SINGLE);
+    let helperArray = [tr];
+    for(let i of creatingTableStorage.elementList) {
+        helperArray.push(i);
+    }
+    creatingTableStorage.elementList = helperArray;
+
+    //TODO
+    //vorübergehende Lösung
     let tbody = document.getElementById('list-create-tbody');
     tbody.appendChild(tr.get());
 }
 
-function swapElementOnChecked(element: HTMLElement, swapToSeries: boolean) {
+function buildCreatingTable() {
     let tbody = document.getElementById('list-create-tbody');
-    if(swapToSeries) {
-        var newElement = new Blueprint().singleEpisode();
+    tbody.innerHTML = '';
+    for(let i of creatingTableStorage.elementList) {
+        tbody.appendChild(i.get());
+    }
+}
+
+function swapElementOnChecked(element: HTMLElement, swapToSingle: boolean) {
+    let tbody = document.getElementById('list-create-tbody');
+    let newElement: any;
+    if(swapToSingle) {
+        newElement = new Blueprint().singleEpisode(UNDEF_AJAXDATA_SINGLE);
     } else {
-        var newElement = new Blueprint().series();
+        newElement = new Blueprint().series(UNDEF_AJAXDATA_SERIES);
     }
     tbody.replaceChild(newElement.get(), element);
 }

@@ -1,12 +1,32 @@
+interface SingleEpObj {
+    id: number,
+    isSeries: number,
+    isFavorit: number,
+    title: string,
+    categoryList: string[],
+    status: number,
+    note: string,
+    link: string
+}
+interface SeriesObj {
+    id: number,
+    isSeries: number,
+    isFavorit: number,
+    title: string,
+    categoryList: string[],
+    episodes: EpisodeObj[],
+    templateList: string[]
+}
 class Blueprint {
-    public singleEpisode() {
+    public singleEpisode(ajaxData: SingleEpObj) {
         let id = new Date().getTime();
         let tr = new SingleEpisode('tr', {
             id: id,
             classList: ['list-create-tr']
         }, {});
+        tr.setId(id);
         let th1 = this.columnSeriesCheckbox(false);
-        let th2 = this.columnFav(tr);
+        let th2 = this.columnFav(tr, ajaxData.isFavorit);
         let th3 = this.columnTextarea(function (ev) {
             tr.setTitle(ev.target.value);
         });
@@ -30,7 +50,7 @@ class Blueprint {
         return tr;
     }
 
-    public series() {
+    public series(ajaxData: SeriesObj) {
 
         //TODO
         //code for testing
@@ -40,8 +60,9 @@ class Blueprint {
             id: id,
             classList: ['list-create-tr']
         }, {});
+        tr.setId(id);
         let th1 = this.columnSeriesCheckbox(true);
-        let th2 = this.columnFav(tr);
+        let th2 = this.columnFav(tr, ajaxData.isFavorit);
         let th3 = this.columnTextarea(function (ev) {
             tr.setTitle(ev.target.value);
         });
@@ -125,22 +146,28 @@ class Blueprint {
         return th;
     }
 
-    private columnFav(parent: any) {
+    private columnFav(parent: any, value: number) {
+        // let index = getIndexById(id);
         let th = new SingleEpisode('th', {}, {});
-        let img = new SingleEpisode('img', {
+        let attributes = (value === 1) ? {
+            src: 'icons/star-full-border.ico',
+            alt: 'star-full'
+        } : {
             src: 'icons/star-empty-border.ico',
             alt: 'star-empty'
-        }, {});
+        };
+        let img = new SingleEpisode('img', attributes, {});
         img.addNewEventListener('click', function (ev) {
+            // let index = getIndexById(id);
             if(ev.currentTarget.alt === 'star-empty') {
                 ev.currentTarget.alt = 'star-full';
                 ev.currentTarget.src = 'icons/star-full-border.ico';
-                console.log(this);
+                // creatingTableStorage.elementList[index].setIsFavorit(1);
                 parent.setIsFavorit(1);
             } else {
                 ev.currentTarget.alt = 'star-empty';
                 ev.currentTarget.src = 'icons/star-empty-border.ico';
-                console.log(this);
+                // creatingTableStorage.elementList[index].setIsFavorit(0);
                 parent.setIsFavorit(0);
             }
         });

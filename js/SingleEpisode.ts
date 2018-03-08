@@ -2,12 +2,12 @@ class SingleEpisode extends HtmlElementBuilder {
     // Ajax Data
     private id: number;
     private isSeries: number = 0;
-    private isFavorit: number;
-    private title: string;
-    private categoryList: string[];
-    private status: number;
-    private note: string;
-    private link: string;
+    private isFavorit: number = 0;
+    private title: string = '';
+    private categoryList: string[] = [];
+    private status: number = 0;
+    private note: string = '';
+    private link: string = '';
 
     public getAjaxData() {
         return JSON.stringify({
