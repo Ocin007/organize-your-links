@@ -11,11 +11,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 function getSettings() {
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "../php/ajax.php", true);
+    xhttp.open("GET", "php/ajax.php", true);
     xhttp.addEventListener('load', function (event) {
         if (xhttp.status >= 200 && xhttp.status < 300) {
             let jsonFile = JSON.parse(xhttp.responseText);
             settings.categoryList = jsonFile.categoryList;
+        } else {
+            console.log('error in getSettings: '+xhttp.status);
         }
     });
     xhttp.send();
