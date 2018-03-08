@@ -5,7 +5,7 @@ class Blueprint {
             id: id,
             classList: ['list-create-tr']
         }, {});
-        let th1 = this.columnSeriesCheckbox();
+        let th1 = this.columnSeriesCheckbox(false);
         let th2 = this.columnFav(tr);
         let th3 = this.columnTextarea(function (ev) {
             tr.setTitle(ev.target.value);
@@ -32,6 +32,23 @@ class Blueprint {
 
     public series() {
 
+        //TODO
+        //code for testing
+
+        let id = new Date().getTime();
+        let tr = new SingleEpisode('tr', {
+            id: id,
+            classList: ['list-create-tr']
+        }, {});
+        let th1 = this.columnSeriesCheckbox(true);
+        let th2 = this.columnFav(tr);
+        let th3 = this.columnTextarea(function (ev) {
+            tr.setTitle(ev.target.value);
+        });
+        tr.addChild(th1);
+        tr.addChild(th2);
+        tr.addChild(th3);
+        return tr;
     }
 
     public seriesElementGeneric() {
@@ -93,16 +110,16 @@ class Blueprint {
         return th;
     }
 
-    private columnSeriesCheckbox() {
+    private columnSeriesCheckbox(bool: boolean) {
         let th = new SingleEpisode('th', {}, {});
         let input = new SingleEpisode('input', {
-            type: 'checkbox'
-            //checked: ''
+            type: 'checkbox',
+            checked: bool
         }, {});
         input.addNewEventListener('click', function (ev) {
             console.log(ev);
             console.log('checkbox clicked');
-            swapElementOnChecked(ev.target.parentElement.parentElement, ev.target.checked);
+            swapElementOnChecked(ev.target.parentElement.parentElement, bool);
         });
         th.addChild(input);
         return th;

@@ -39,5 +39,11 @@ function addNewListElement(ev) {
 }
 
 function swapElementOnChecked(element: HTMLElement, swapToSeries: boolean) {
-
+    let tbody = document.getElementById('list-create-tbody');
+    if(swapToSeries) {
+        var newElement = new Blueprint().singleEpisode();
+    } else {
+        var newElement = new Blueprint().series();
+    }
+    tbody.replaceChild(newElement.get(), element);
 }
