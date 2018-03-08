@@ -132,16 +132,25 @@ class Blueprint {
     }
 
     private columnStatus(parent: any) {
+        let changeStatus = (status: number, ev: any) => {
+            parent.setStatus(status);
+            let imgs = th.getChild(-1);
+            for(let i of imgs) {
+                i.editClassList('status-selected');
+            }
+            for(let i of ev.target.offsetParent.children) {
+                i.classList.remove('status-selected');
+            }
+            ev.target.classList.add('status-selected');
+        };
         let th = new SingleEpisode('th', {}, {});
         let img1 = new SingleEpisode('img', {
-            classList: [],
+            classList: ['status-selected'],
             src: 'icons/not-watched.ico',
             alt: 'nicht gesehen'
         }, {});
         img1.addNewEventListener('click', function (ev) {
-            parent.setStatus(0);
-            img1.editClassList('status-selected');
-            console.log(ev);
+            changeStatus(0, ev);
         });
         let img2 = new SingleEpisode('img', {
             classList: [],
@@ -149,8 +158,7 @@ class Blueprint {
             alt: 'angefangen'
         }, {});
         img2.addNewEventListener('click', function (ev) {
-            parent.setStatus(1);
-            img2.editClassList('status-selected');
+            changeStatus(1, ev);
         });
         let img3 = new SingleEpisode('img', {
             classList: [],
@@ -158,8 +166,7 @@ class Blueprint {
             alt: 'gesehen'
         }, {});
         img3.addNewEventListener('click', function (ev) {
-            parent.setStatus(2);
-            img3.editClassList('status-selected');
+            changeStatus(2, ev);
         });
         th.addChild(img1);
         th.addChild(img2);

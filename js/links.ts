@@ -30,7 +30,7 @@ function addEvents() {
 }
 
 function addNewListElement(ev) {
-    let tr = blueprintSingleEpisode();
+    let tr = new Blueprint().singleEpisode();
     creatingTableStorage.elementList.push(tr);
     let tbody = document.getElementById('list-create-tbody');
     tbody.appendChild(tr.get());
