@@ -47,7 +47,7 @@ class SingleEpisode extends HtmlElementBuilder {
         this.status = value;
     }
 
-    public setCategoryList(value: Array) {
+    public setCategoryList(value: string[]) {
         console.log(value);
         this.categoryList = value;
     }
