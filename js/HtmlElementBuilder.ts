@@ -41,7 +41,7 @@ class HtmlElementBuilder {
         }
         for(let event of this.htmlEvents) {
             this.htmlMainElement.addEventListener(event['event'], function (ev) {
-                var callback = event['callback'];
+                let callback = event['callback'];
                 callback(ev);
             });
         }
@@ -69,7 +69,7 @@ class HtmlElementBuilder {
     }
 
     public editClassList(str: string) {
-        var index = this.htmlAttributes['classList'].indexOf(str);
+        let index = this.htmlAttributes['classList'].indexOf(str);
         if(index !== -1) {
             this.htmlAttributes['classList'] = this.removeClassFromClassList(index);
         } else {
@@ -78,7 +78,7 @@ class HtmlElementBuilder {
     }
     
     private removeClassFromClassList(index: number) {
-        var helperArray: string[];
+        let helperArray: string[];
         for(let i in this.htmlAttributes['classList']) {
             if(parseInt(i) !== index) {
                 helperArray.push(this.htmlAttributes['classList'][i]);
