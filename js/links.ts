@@ -59,10 +59,9 @@ function addNewListElement(ev) {
     }
     creatingTableStorage.elementList = helperArray;
 
-    //TODO
-    //vorübergehende Lösung
     let tbody = document.getElementById('list-create-tbody');
-    tbody.appendChild(tr.get());
+    console.log(tbody);
+    tbody.insertBefore(tr.get(), tbody.firstElementChild);
 }
 
 function buildCreatingTable() {
@@ -76,10 +75,20 @@ function buildCreatingTable() {
 function swapElementOnChecked(element: HTMLElement, swapToSingle: boolean) {
     let tbody = document.getElementById('list-create-tbody');
     let newElement: any;
+    let index = getIndexById(parseInt(element.id));
     if(swapToSingle) {
         newElement = new Blueprint().singleEpisode(UNDEF_AJAXDATA_SINGLE);
     } else {
         newElement = new Blueprint().series(UNDEF_AJAXDATA_SERIES);
     }
     tbody.replaceChild(newElement.get(), element);
+    creatingTableStorage.elementList[index] = newElement;
+}
+
+function getIndexById(id: number) {
+    for(let i in creatingTableStorage.elementList) {
+        if(creatingTableStorage.elementList[i].getId() === id) {
+            return i;
+        }
+    }
 }

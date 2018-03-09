@@ -56,4 +56,8 @@ class SingleEpisode extends HtmlElementBuilder {
         console.log(value);
         this.id = value;
     }
+
+    public getId() {
+        return this.id;
+    }
 }

@@ -56,7 +56,7 @@ class Blueprint {
         //code for testing
 
         let id = new Date().getTime();
-        let tr = new SingleEpisode('tr', {
+        let tr = new Series('tr', {
             id: id,
             classList: ['list-create-tr']
         }, {});
@@ -83,8 +83,8 @@ class Blueprint {
 
 
     private columnTextarea(callback: Function) {
-        let th = new SingleEpisode('th', {}, {});
-        let text = new SingleEpisode('textarea', {
+        let th = new HtmlElementBuilder('th', {}, {});
+        let text = new HtmlElementBuilder('textarea', {
             rows: '5',
             cols: '15',
             wrap: 'hard'
@@ -95,24 +95,24 @@ class Blueprint {
     }
 
     private columnCategory(parent: Object) {
-        let th = new SingleEpisode('th', {}, {});
-        let div = new SingleEpisode('div', {classList: ['create-list-category']}, {});
-        let div1 = new SingleEpisode('div', {classList: ['selected-categories-container']}, {});
-        let div2 = new SingleEpisode('div', {
+        let th = new HtmlElementBuilder('th', {}, {});
+        let div = new HtmlElementBuilder('div', {classList: ['create-list-category']}, {});
+        let div1 = new HtmlElementBuilder('div', {classList: ['selected-categories-container']}, {});
+        let div2 = new HtmlElementBuilder('div', {
             classList: ['categorie-hover'],
             innerHTML: 'Kategorien wählen...'
         }, {});
-        let div3 = new SingleEpisode('div', {classList: ['categorie-hover-tooltip']}, {});
+        let div3 = new HtmlElementBuilder('div', {classList: ['categorie-hover-tooltip']}, {});
         div3.addNewEventListener('click', function (ev) {
             //TODO
         });
         div2.addChild(div3);
-        let div4 = new SingleEpisode('div', {}, {});
-        let input = new SingleEpisode('input', {
+        let div4 = new HtmlElementBuilder('div', {}, {});
+        let input = new HtmlElementBuilder('input', {
             type: 'text',
             placeholder: 'Neue Kategorie'
         }, {});
-        let img = new SingleEpisode('img', {
+        let img = new HtmlElementBuilder('img', {
             classList: ['add-subtr-button'],
             src: 'icons/add-button.ico',
             alt: 'add'
@@ -132,8 +132,8 @@ class Blueprint {
     }
 
     private columnSeriesCheckbox(bool: boolean) {
-        let th = new SingleEpisode('th', {}, {});
-        let input = new SingleEpisode('input', {
+        let th = new HtmlElementBuilder('th', {}, {});
+        let input = new HtmlElementBuilder('input', {
             type: 'checkbox',
             checked: bool
         }, {});
@@ -148,7 +148,7 @@ class Blueprint {
 
     private columnFav(parent: any, value: number) {
         // let index = getIndexById(id);
-        let th = new SingleEpisode('th', {}, {});
+        let th = new HtmlElementBuilder('th', {}, {});
         let attributes = (value === 1) ? {
             src: 'icons/star-full-border.ico',
             alt: 'star-full'
@@ -156,7 +156,7 @@ class Blueprint {
             src: 'icons/star-empty-border.ico',
             alt: 'star-empty'
         };
-        let img = new SingleEpisode('img', attributes, {});
+        let img = new HtmlElementBuilder('img', attributes, {});
         img.addNewEventListener('click', function (ev) {
             // let index = getIndexById(id);
             if(ev.currentTarget.alt === 'star-empty') {
@@ -187,8 +187,8 @@ class Blueprint {
             }
             ev.target.classList.add('status-selected');
         };
-        let th = new SingleEpisode('th', {}, {});
-        let img1 = new SingleEpisode('img', {
+        let th = new HtmlElementBuilder('th', {}, {});
+        let img1 = new HtmlElementBuilder('img', {
             classList: ['status-selected'],
             src: 'icons/not-watched.ico',
             alt: 'nicht gesehen'
@@ -196,7 +196,7 @@ class Blueprint {
         img1.addNewEventListener('click', function (ev) {
             changeStatus(0, ev);
         });
-        let img2 = new SingleEpisode('img', {
+        let img2 = new HtmlElementBuilder('img', {
             classList: [],
             src: 'icons/a-bit-watched.ico',
             alt: 'angefangen'
@@ -204,7 +204,7 @@ class Blueprint {
         img2.addNewEventListener('click', function (ev) {
             changeStatus(1, ev);
         });
-        let img3 = new SingleEpisode('img', {
+        let img3 = new HtmlElementBuilder('img', {
             classList: [],
             src: 'icons/watched.ico',
             alt: 'gesehen'
@@ -219,8 +219,8 @@ class Blueprint {
     }
 
     private columnAddSubtr() {
-        let th = new SingleEpisode('th', {classList: ['add-subtr']}, {});
-        let img1 = new SingleEpisode('img', {
+        let th = new HtmlElementBuilder('th', {classList: ['add-subtr']}, {});
+        let img1 = new HtmlElementBuilder('img', {
             classList: ['add-subtr-button'],
             src: 'icons/add-button.ico',
             alt: 'add'
@@ -228,7 +228,7 @@ class Blueprint {
         img1.addNewEventListener('click', function (ev) {
             //TODO
         });
-        let img2 = new SingleEpisode('img', {
+        let img2 = new HtmlElementBuilder('img', {
             classList: ['add-subtr-button'],
             src: 'icons/subtr-button.ico',
             alt: 'subtr'

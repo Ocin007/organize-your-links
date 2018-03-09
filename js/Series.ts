@@ -14,11 +14,11 @@ class Series extends HtmlElementBuilder {
     // Ajax Data
     private id: number;
     private isSeries: number = 1;
-    private isFavorit: number;
-    private title: string;
-    private categoryList: string[];
-    private episodes: EpisodeObj[];
-    private templateList: string[];
+    private isFavorit: number = 0;
+    private title: string = '';
+    private categoryList: string[] = [];
+    private episodes: EpisodeObj[] = [];
+    private templateList: string[] = [];
 
     public getAjaxData() {
         return JSON.stringify({
@@ -32,8 +32,27 @@ class Series extends HtmlElementBuilder {
         });
     }
 
+    public setId(value: number) {
+        console.log(value);
+        this.id = value;
+    }
+
+    public getId() {
+        return this.id;
+    }
+
     public setTitle(value: string) {
         console.log(value);
         this.title = value;
+    }
+
+    public setIsFavorit(value: number) {
+        console.log(value);
+        this.isFavorit = value;
+    }
+
+    public setCategoryList(value: string[]) {
+        console.log(value);
+        this.categoryList = value;
     }
 }
