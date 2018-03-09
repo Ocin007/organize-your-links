@@ -103,3 +103,18 @@ function clearListCreate() {
     let tbody = document.getElementById('list-create-tbody');
     tbody.innerHTML = '';
 }
+
+function appendToSelectedCategoriesContainer(categoryElement: HtmlElementBuilder, container: HtmlElementBuilder) {
+    //TODO: appendToSelectedCategoriesContainer
+    //im Html und im Objekt
+}
+
+function addCategoryToNewCategories(newCategory: string) {
+    //TODO: addCategoryToNewCategories
+    // creatingTableStorage.newCategories und im Html
+}
+
+function appendToHoverTooltip(categoryElementTooltip: HtmlElementBuilder, div3: HtmlElementBuilder) {
+    //TODO: appendToHoverTooltip
+    //im Html und im Objekt
+}

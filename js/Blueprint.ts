@@ -106,9 +106,6 @@ class Blueprint {
             innerHTML: 'Kategorien wählen...'
         }, {});
         let div3 = new HtmlElementBuilder('div', {classList: ['categorie-hover-tooltip']}, {});
-        div3.addNewEventListener('click', function (ev) {
-
-        });
         div2.addChild(div3);
         let div4 = new HtmlElementBuilder('div', {}, {});
         let input = new HtmlElementBuilder('input', {
@@ -121,7 +118,12 @@ class Blueprint {
             alt: 'add'
         }, {});
         img.addNewEventListener('click', function (ev) {
-
+            let newCategory = ev.target.previousElementSibling.value;
+            let categoryElementContainer = this.createCategoryElementForContainer(newCategory);
+            appendToSelectedCategoriesContainer(categoryElementContainer, div1);
+            addCategoryToNewCategories(newCategory);
+            let categoryElementTooltip = this.createCategoryElementForTooltip(newCategory);
+            appendToHoverTooltip(categoryElementTooltip, div3);
         });
         div4.addChild(input);
         div4.addChild(img);
@@ -132,6 +134,14 @@ class Blueprint {
         th.addChild(div);
 
         return th;
+    }
+
+    private createCategoryElementForContainer(category: string) {
+        //TODO: createCategoryElementForContainer
+    }
+
+    private createCategoryElementForTooltip(category: string) {
+        //TODO: createCategoryElementForTooltip
     }
 
     private columnSeriesCheckbox(bool: boolean) {
