@@ -48,6 +48,12 @@ function addEvents() {
             addNewListElement(ev);
         });
     }
+    document.getElementById('option-reset-list-create').addEventListener('click', function () {
+        clearListCreate();
+    });
+    document.getElementById('option-save-list-create').addEventListener('click', function (ev) {
+        //TODO: Funktion zum Speichern der erstellten Elemente
+    });
 }
 
 function addNewListElement(ev) {
@@ -91,4 +97,9 @@ function getIndexById(id: number) {
             return i;
         }
     }
+}
+
+function clearListCreate() {
+    let tbody = document.getElementById('list-create-tbody');
+    tbody.innerHTML = '';
 }
