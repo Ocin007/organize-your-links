@@ -52,7 +52,7 @@ class Blueprint {
 
     public series(ajaxData: SeriesObj) {
 
-        //TODO
+        //TODO: Blueprint für Serien
         //code for testing
 
         let id = new Date().getTime();
@@ -66,9 +66,11 @@ class Blueprint {
         let th3 = this.columnTextarea(function (ev) {
             tr.setTitle(ev.target.value);
         });
+        let th4 = this.columnCategory(tr);
         tr.addChild(th1);
         tr.addChild(th2);
         tr.addChild(th3);
+        tr.addChild(th4);
         return tr;
     }
 
@@ -94,6 +96,7 @@ class Blueprint {
         return th;
     }
 
+    //TODO: Funktionen zum Anzeigen bestehender bzw. Hinzufügen neuer Kategorien
     private columnCategory(parent: Object) {
         let th = new HtmlElementBuilder('th', {}, {});
         let div = new HtmlElementBuilder('div', {classList: ['create-list-category']}, {});
@@ -104,7 +107,7 @@ class Blueprint {
         }, {});
         let div3 = new HtmlElementBuilder('div', {classList: ['categorie-hover-tooltip']}, {});
         div3.addNewEventListener('click', function (ev) {
-            //TODO
+
         });
         div2.addChild(div3);
         let div4 = new HtmlElementBuilder('div', {}, {});
@@ -118,7 +121,7 @@ class Blueprint {
             alt: 'add'
         }, {});
         img.addNewEventListener('click', function (ev) {
-            //TODO
+
         });
         div4.addChild(input);
         div4.addChild(img);
@@ -218,6 +221,7 @@ class Blueprint {
         return th;
     }
 
+    //TODO: Funktionen für die add- bzw. subtr-Buttons
     private columnAddSubtr() {
         let th = new HtmlElementBuilder('th', {classList: ['add-subtr']}, {});
         let img1 = new HtmlElementBuilder('img', {
@@ -226,7 +230,7 @@ class Blueprint {
             alt: 'add'
         }, {});
         img1.addNewEventListener('click', function (ev) {
-            //TODO
+
         });
         let img2 = new HtmlElementBuilder('img', {
             classList: ['add-subtr-button'],
@@ -234,7 +238,7 @@ class Blueprint {
             alt: 'subtr'
         }, {});
         img2.addNewEventListener('click', function (ev) {
-            //TODO
+
         });
         th.addChild(img1);
         th.addChild(img2);

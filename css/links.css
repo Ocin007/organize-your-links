@@ -166,6 +166,7 @@ thead {
 }
 #option-create-container {
     margin-bottom: 20px;
+    /*TODO: Feste Größe, wenn kein Element vorhanden ist*/
 }
 .th-sizing1 {height: 30px; width: 4%;}
 .th-sizing2 {height: 30px; width: 8%;}
