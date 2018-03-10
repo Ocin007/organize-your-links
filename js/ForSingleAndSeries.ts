@@ -27,4 +27,20 @@ class ForSingleAndSeries extends HtmlElementBuilder {
         console.log(value);
         this.categoryList = value;
     }
+
+    public appendCategoryList(value: string) {
+        console.log(value);
+        this.categoryList.push(value);
+    }
+
+    public removeFromCategoryList(value: string) {
+        console.log(value);
+        let helper = [];
+        for(let i of this.categoryList) {
+            if(i !== value) {
+                helper.push(i);
+            }
+        }
+        this.setCategoryList(helper);
+    }
 }
