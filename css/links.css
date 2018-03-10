@@ -30,6 +30,7 @@ main {
     flex-direction: column;
     align-items: center;
 }
+/*TODO: Höhe anpassen*/
 .action-container, .option-container, .filter-container {
     border: 1px solid darkgrey;
     /*border-radius: 5px;*/
@@ -205,7 +206,7 @@ thead {
 .categorie-hover:hover .categorie-hover-tooltip {
     visibility: visible;
 }
-.selected-categories-container {
+.selected-categories-container, #new-categories {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -216,7 +217,13 @@ thead {
     height: 72px;
     overflow: auto;
 }
-.selected-categories-container div {
+#new-categories {
+    width: 390px;
+    max-height: 45px;
+    background-color: #f9f9f9;
+    border: none;
+}
+.selected-categories-container div, #new-categories div {
     margin: 2px;
     padding: 3px 7px;
     border: 1px solid black;
