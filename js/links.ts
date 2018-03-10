@@ -102,19 +102,25 @@ function getIndexById(id: number) {
 function clearListCreate() {
     let tbody = document.getElementById('list-create-tbody');
     tbody.innerHTML = '';
+    creatingTableStorage.elementList = [];
 }
 
-function appendToSelectedCategoriesContainer(categoryElement: HtmlElementBuilder, container: HtmlElementBuilder) {
-    //TODO: appendToSelectedCategoriesContainer
-    //im Html und im Objekt
+//TODO: Überprüfung, ob neue Kategorie schon vorhanden ist
+function appendToSelectedCategoriesContainer(categoryElement: HtmlElementBuilder, container: HtmlElementBuilder, id: string) {
+    container.addChild(categoryElement);
+    let containerHtml = document.getElementById(id).children[3].firstElementChild.firstElementChild;
+    containerHtml.appendChild(categoryElement.get());
 }
 
 function addCategoryToNewCategories(newCategory: string) {
-    //TODO: addCategoryToNewCategories
-    // creatingTableStorage.newCategories und im Html
+    creatingTableStorage.newCategories.push(newCategory);
+    let div = document.getElementById('new-categories');
+    let child = new HtmlElementBuilder('div', {innerHTML: newCategory}, {});
+    div.appendChild(child.get());
 }
 
-function appendToHoverTooltip(categoryElementTooltip: HtmlElementBuilder, div3: HtmlElementBuilder) {
-    //TODO: appendToHoverTooltip
-    //im Html und im Objekt
+function appendToHoverTooltip(categoryElement: HtmlElementBuilder, container: HtmlElementBuilder, id: string) {
+    container.addChild(categoryElement);
+    let containerHtml = document.getElementById(id).children[3].firstElementChild.children[1].firstElementChild;
+    containerHtml.appendChild(categoryElement.get());
 }

@@ -97,7 +97,7 @@ class Blueprint {
     }
 
     //TODO: Funktionen zum Anzeigen bestehender bzw. Hinzufügen neuer Kategorien
-    private columnCategory(parent: Object) {
+    private columnCategory(parent: any) {
         let th = new HtmlElementBuilder('th', {}, {});
         let div = new HtmlElementBuilder('div', {classList: ['create-list-category']}, {});
         let div1 = new HtmlElementBuilder('div', {classList: ['selected-categories-container']}, {});
@@ -119,11 +119,13 @@ class Blueprint {
         }, {});
         img.addNewEventListener('click', function (ev) {
             let newCategory = ev.target.previousElementSibling.value;
-            let categoryElementContainer = this.createCategoryElementForContainer(newCategory);
-            appendToSelectedCategoriesContainer(categoryElementContainer, div1);
+            let categoryElementContainer = new Blueprint().createCategoryElementForContainer(newCategory);
+            let id = parent.getId().toString();
+            appendToSelectedCategoriesContainer(categoryElementContainer, div1, id);
             addCategoryToNewCategories(newCategory);
-            let categoryElementTooltip = this.createCategoryElementForTooltip(newCategory);
-            appendToHoverTooltip(categoryElementTooltip, div3);
+            let categoryElementTooltip = new Blueprint().createCategoryElementForTooltip(newCategory);
+            appendToHoverTooltip(categoryElementTooltip, div3, id);
+            parent.appendCategoryList(newCategory);
         });
         div4.addChild(input);
         div4.addChild(img);
@@ -136,12 +138,28 @@ class Blueprint {
         return th;
     }
 
-    private createCategoryElementForContainer(category: string) {
-        //TODO: createCategoryElementForContainer
+    public createCategoryElementForContainer(category: string) {
+        let div = new HtmlElementBuilder('div', {innerHTML: category}, {});
+        let img = new HtmlElementBuilder('img', {
+            classList: ['button-icon'],
+            src: 'icons/subtr-button.ico',
+            alt: 'subtr'
+        }, {});
+        img.addNewEventListener('click', function (ev) {
+            console.log(ev);
+            //TODO: Entfernen der Kategorie
+        });
+        div.addChild(img);
+        return div;
     }
 
-    private createCategoryElementForTooltip(category: string) {
-        //TODO: createCategoryElementForTooltip
+    public createCategoryElementForTooltip(category: string) {
+        let p = new HtmlElementBuilder('p', {innerHTML: category}, {});
+        p.addNewEventListener('click', function (ev) {
+            console.log(ev);
+            //TODO: Hinzufügen der Kategorie
+        });
+        return p;
     }
 
     private columnSeriesCheckbox(bool: boolean) {
