@@ -111,7 +111,8 @@ thead {
     /*display: none;*/
 }
 .button-icon {
-    /*margin-top: 2px;*/
+    margin-top: 2px;
+    margin-left: 2px;
 }
 .action-container {
     display: flex;
@@ -208,6 +209,7 @@ thead {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    align-content: flex-start;
     background-color: white;
     border: 1px solid black;
     width: 171px;
@@ -220,11 +222,8 @@ thead {
     border: 1px solid black;
     background: linear-gradient(#00ccff, #0066ff);
 }
-.selected-categories-container div img {
-    display: none;
-}
-.selected-categories-container div:hover img {
-    display: inline;
+.selected-categories-container div:active {
+    background: linear-gradient(#0066ff, #00ccff);
 }
 .status-selected {
     border: 3px solid blue;
